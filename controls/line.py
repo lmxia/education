@@ -21,8 +21,8 @@ class LineControl(object):
         for item in data:
             print(item.get("x"))
             print(item.get("y"))
-            x_list.append(item.get("x"))
-            y_list.append(item.get("y"))
+            x_list.append(eval(item.get("x")))
+            y_list.append(eval(item.get("y")))
         
         train_X = numpy.array(x_list)
         train_Y = numpy.array(y_list)
