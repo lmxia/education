@@ -27,6 +27,10 @@ class LineControl(object):
         train_Y = numpy.array(y_list)
         n_samples = train_X.shape[0]
 
+        print(train_X)
+        print(train_Y)
+        print(n_samples)
+
         # tf Graph Input，tf图输入
         X = tf.placeholder("float")
         Y = tf.placeholder("float")
@@ -46,6 +50,7 @@ class LineControl(object):
         # Start training，开始训练
         with tf.Session() as sess:
             sess.run(init)
+            print("initialed...")
 
             # Fit all training data
             for epoch in range(training_epochs):
