@@ -15,6 +15,7 @@ class LineControl(object):
         learning_rate = 0.01
         training_epochs = 1000
         display_step = 50
+        rng = numpy.random
         x_list = []
         y_list = []
         for item in data:
@@ -37,19 +38,16 @@ class LineControl(object):
 
         # Construct a linear model，构造线性模型
         pred = tf.add(tf.multiply(X, W), b)
-        print("initialed...")
         # Mean squared error，损失函数：均方差
         cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
-        print("initialed...0")
         # Gradient descent， 优化方式：梯度下降
         optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
         # Initialize the variables (i.e. assign their default value)，初始化所有图节点参数
         init = tf.global_variables_initializer()
-        print("initialed...1")
         # Start training，开始训练
         with tf.Session() as sess:
             sess.run(init)
-            print("initialed...2")
+            print("initialed...")
             # Fit all training data
             for epoch in range(training_epochs):
                 for (x, y) in zip(train_X, train_Y):
