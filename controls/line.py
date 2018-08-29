@@ -9,12 +9,12 @@ import numpy
 LOG = logging.getLogger(__name__)
 
 class LineControl(object):
-    learning_rate = 0.01
-    training_epochs = 1000
-    display_step = 50
     @classmethod
     def regression(cls, data):
         back = {"w":"0", "b":"0"}
+        learning_rate = 0.01
+        training_epochs = 1000
+        display_step = 50
         x_list = []
         y_list = []
         for item in data:
@@ -48,7 +48,6 @@ class LineControl(object):
         with tf.Session() as sess:
             sess.run(init)
             print("initialed...2")
-
             # Fit all training data
             for epoch in range(training_epochs):
                 for (x, y) in zip(train_X, train_Y):
