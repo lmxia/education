@@ -18,6 +18,8 @@ class LineControl(object):
         x_list = []
         y_list = []
         for item in data:
+            print(item.get("x"))
+            print(item.get("y"))
             x_list.append(item.get("x"))
             y_list.append(item.get("y"))
         
