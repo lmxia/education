@@ -29,9 +29,6 @@ class LineControl(object):
 
         # tf Graph Input，tf图输入
         X = tf.placeholder("float")
-        print(train_X)
-        print(train_Y)
-        print(n_samples)
         Y = tf.placeholder("float")
 
         # Set model weights，初始化网络模型的权重
@@ -46,10 +43,11 @@ class LineControl(object):
         optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
         # Initialize the variables (i.e. assign their default value)，初始化所有图节点参数
         init = tf.global_variables_initializer()
+        print("initialed...1")
         # Start training，开始训练
         with tf.Session() as sess:
             sess.run(init)
-            print("initialed...")
+            print("initialed...2")
 
             # Fit all training data
             for epoch in range(training_epochs):
