@@ -58,4 +58,6 @@ class LineControl(object):
             print("Optimization Finished!")
             training_cost = sess.run(cost, feed_dict={X: train_X, Y: train_Y})
             print("Training cost=", training_cost, "W=", sess.run(W), "b=", sess.run(b), '\n')
+            back["w"] = sess.run(W)
+            back["b"] = sess.run(b)
         return JsonResponse(data=back, code=status.HTTP_200_OK, desc='get house success') 
