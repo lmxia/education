@@ -27,12 +27,11 @@ class LineControl(object):
         train_Y = numpy.array(y_list)
         n_samples = train_X.shape[0]
 
+        # tf Graph Input，tf图输入
+        X = tf.placeholder("float")
         print(train_X)
         print(train_Y)
         print(n_samples)
-
-        # tf Graph Input，tf图输入
-        X = tf.placeholder("float")
         Y = tf.placeholder("float")
 
         # Set model weights，初始化网络模型的权重
