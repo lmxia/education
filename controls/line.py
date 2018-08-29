@@ -1,11 +1,10 @@
+# -*- coding:utf-8 -*-
 import logging
 from utils.response import JsonResponse
 from rest_framework import status
 from __future__ import print_function
 import tensorflow as tf
 import numpy
-#coding=utf-8
-
 
 LOG = logging.getLogger(__name__)
 
