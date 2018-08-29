@@ -9,12 +9,13 @@ import numpy
 LOG = logging.getLogger(__name__)
 
 class LineControl(object):
+    learning_rate = 0.01
+    training_epochs = 1000
+    display_step = 50
     @classmethod
     def regression(cls, data):
         back = {"w":"0", "b":"0"}
-        learning_rate = 0.01
-        training_epochs = 1000
-        display_step = 50
+        
         rng = numpy.random
         x_list = []
         y_list = []
@@ -41,7 +42,7 @@ class LineControl(object):
         # Mean squared error，损失函数：均方差
         cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
         # Gradient descent， 优化方式：梯度下降
-        optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+        optimizer = tf.train.GradientDescentOptimizer(cls.learning_rate).minimize(cost)
         # Initialize the variables (i.e. assign their default value)，初始化所有图节点参数
         init = tf.global_variables_initializer()
         # Start training，开始训练
@@ -49,12 +50,12 @@ class LineControl(object):
             sess.run(init)
             print("initialed...")
             # Fit all training data
-            for epoch in range(training_epochs):
+            for epoch in range(cls.training_epochs):
                 for (x, y) in zip(train_X, train_Y):
                     sess.run(optimizer, feed_dict={X: x, Y: y})
 
                 #Display logs per epoch step
-                if (epoch+1) % display_step == 0:
+                if (epoch+1) % cls.display_step == 0:
                     c = sess.run(cost, feed_dict={X: train_X, Y:train_Y})
                     print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c),"W=", sess.run(W), "b=", sess.run(b))
                         
