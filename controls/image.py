@@ -10,9 +10,10 @@ LOG = logging.getLogger(__name__)
 class ImageControl(object):
 
     @classmethod
-    def load_image(cls):
+    def load_image(cls, path):
+        print(path)
         # load image
-        img=data.moon()
+        img = skimage.io.imread(path)
         img = img / 255.0
         assert (0 <= img).all() and (img <= 1.0).all()
         # print "Original Image Shape: ", img.shape
