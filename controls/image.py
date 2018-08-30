@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-import os, time, inspect, skimage
+import os, time, inspect, skimage, logging
 import numpy as np
 import skimage.io
 import skimage.transform
