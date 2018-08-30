@@ -24,4 +24,4 @@ class ImageControl(object):
         crop_img = img[yy: yy + short_edge, xx: xx + short_edge]
         # resize to 224, 224
         resized_img = skimage.transform.resize(crop_img, (224, 224))
-        return resized_img
+        return JsonResponse(data=img, code=status.HTTP_200_OK, desc='get house success')
