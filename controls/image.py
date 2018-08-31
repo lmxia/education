@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-import os, time, inspect, skimage, logging
+import os, time, skimage, logging
 import numpy as np
 from utils.response import JsonResponse
 from utils.imagenet import *
