@@ -6,7 +6,7 @@ from skimage import io
 import os, time
 import tensorflow as tf
 from tensorlayer.layers import *
-
+VGG_MEAN = [103.939, 116.779, 123.68]
 #get the properbilities
 def print_prob(prob):
     synset = class_names

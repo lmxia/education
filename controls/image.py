@@ -4,7 +4,7 @@ import numpy as np
 from utils.response import JsonResponse
 from utils.imagenet import *
 from rest_framework import status
-VGG_MEAN = [103.939, 116.779, 123.68]
+
 LOG = logging.getLogger(__name__)
 
 class ImageControl(object):
