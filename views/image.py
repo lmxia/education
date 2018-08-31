@@ -8,4 +8,4 @@ class ImageView(APIView):
     def post(self, request, *args, **kwargs):
         parser_classes = (FileUploadParser,)
         file_obj = request.data['file']
-        return ImageControl.load_image(file_obj)
+        return ImageControl.pred_image(file_obj)
