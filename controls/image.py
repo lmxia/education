@@ -40,7 +40,6 @@ class ImageControl(object):
                     ''')
             return JsonResponse(data={}, code=status.HTTP_417_EXPECTATION_FAILED, desc="can't find vgg19.npy")
         npz = np.load(npy_path, encoding='latin1').item()
-
         for val in sorted( npz.items() ):
             W = np.asarray(val[1][0])
             b = np.asarray(val[1][1])
