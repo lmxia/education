@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import os, time, skimage, logging
 import numpy as np
+import tensorlayer as tl
 from utils.response import JsonResponse
 from utils.imagenet import *
 from rest_framework import status
