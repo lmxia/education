@@ -47,6 +47,6 @@ class ImageControl(object):
             cls.params.extend([W, b])
 
 # TODO make it env variables
-ImageControl.pre_load("../vgg19.npy")
+ImageControl.pre_load("/notebooks/education/vgg19.npy")
 
     
