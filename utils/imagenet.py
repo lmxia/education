@@ -5,7 +5,6 @@ import skimage.transform
 from skimage import io
 import os, time
 import tensorflow as tf
-import tensorlayer as tl
 from tensorlayer.layers import *
 
 #get the properbilities
