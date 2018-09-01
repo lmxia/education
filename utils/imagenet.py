@@ -10,8 +10,11 @@ VGG_MEAN = [103.939, 116.779, 123.68]
 #get the properbilities
 def print_prob(prob):
     synset = class_names
+    print prob
+    print synset
     # print prob
     pred = np.argsort(prob)[::-1]
+    print pred
     # Get top1 label
     top1 = synset[pred[0]]
     print("Top1: ", top1, prob[pred[0]])

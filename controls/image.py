@@ -28,9 +28,9 @@ class ImageControl(object):
         start_time = time.time()
         prob = sess.run(probs, feed_dict= {x : img1})
         print("End time : %.5ss" % (time.time() - start_time))
-
+        print prob
         print_prob(prob[0])
-        return JsonResponse(data=probs, code=status.HTTP_200_OK, desc='get identify success')
+        return JsonResponse(data=prob[0], code=status.HTTP_200_OK, desc='get identify success')
 
     @classmethod
     def pre_load(cls, npy_path="../vgg19.npy"):
