@@ -3,7 +3,7 @@ from __future__ import print_function
 import logging
 from utils.response import JsonResponse
 from rest_framework import status
-# import tensorflow as tf
+import tensorflow as tf
 import numpy
 
 LOG = logging.getLogger(__name__)
