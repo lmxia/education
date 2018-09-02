@@ -11,9 +11,6 @@ LOG = logging.getLogger(__name__)
 class ImageControl(object):
     params = []
     x = tf.placeholder("float", [None, 224, 224, 3])
-    network = Vgg19_simple_api(x)
-    probs = tf.nn.softmax(network.outputs, name="prob")
-
     @classmethod
     def pred_image(cls, path):
         print(path)
@@ -23,9 +20,11 @@ class ImageControl(object):
         sess = tf.InteractiveSession()
         tl.layers.initialize_global_variables(sess)
         print("Restoring model from npz file")
-        tl.files.assign_params(sess, cls.params, cls.network)
+        network = Vgg19_simple_api(cls.x)
+        probs = tf.nn.softmax(network.outputs, name="prob")
+        tl.files.assign_params(sess, cls.params, network)
         start_time = time.time()
-        prob = sess.run(cls.probs, feed_dict= {cls.x : img1})
+        prob = sess.run(probs, feed_dict= {cls.x : img1})
         print("End time : %.5ss" % (time.time() - start_time))
         pred_result_top1, pred_result_top5 = print_prob(prob[0])
         return JsonResponse(data=pred_result_top5, code=status.HTTP_200_OK, desc='get identify success')
