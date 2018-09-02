@@ -23,9 +23,9 @@ class ImageControl(object):
         tl.layers.initialize_global_variables(sess)
         print("Restoring model from npz file")
 
-        tl.files.assign_params(sess, params, network)
+        tl.files.assign_params(sess, cls.params, network)
         start_time = time.time()
-        prob = sess.run(probs, feed_dict= {cls.x : img1})
+        prob = sess.run(probs, feed_dict= {x : img1})
         print("End time : %.5ss" % (time.time() - start_time))
         pred_result_top1, pred_result_top5 = print_prob(prob[0])
         return JsonResponse(data=pred_result_top5, code=status.HTTP_200_OK, desc='get identify success')
