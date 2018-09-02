@@ -28,7 +28,7 @@ class ImageControl(object):
         start_time = time.time()
         prob = sess.run(probs, feed_dict= {x : img1})
         print("End time : %.5ss" % (time.time() - start_time))
-        print prob
+        print prob.shape, prob
         print_prob(prob[0])
         return JsonResponse(data=prob[0], code=status.HTTP_200_OK, desc='get identify success')
 
