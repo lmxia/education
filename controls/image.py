@@ -11,7 +11,7 @@ LOG = logging.getLogger(__name__)
 class ImageControl(object):
     params = []
     x = tf.placeholder("float", [None, 224, 224, 3])
-    probs = tf.nn.softmax(Vgg19_simple_api(cls.x).outputs, name="prob")
+    probs = tf.nn.softmax(Vgg19_simple_api(x).outputs, name="prob")
 
     @classmethod
     def pred_image(cls, path):
