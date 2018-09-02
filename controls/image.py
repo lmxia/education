@@ -10,6 +10,9 @@ LOG = logging.getLogger(__name__)
 
 class ImageControl(object):
     params = []
+    x = tf.placeholder("float", [None, 224, 224, 3])
+    probs = tf.nn.softmax(Vgg19_simple_api(cls.x).outputs, name="prob")
+
     @classmethod
     def pred_image(cls, path):
         print(path)
@@ -17,11 +20,7 @@ class ImageControl(object):
         processed_images = load_image(path)
         img1 = processed_images.reshape((1, 224, 224, 3))
         sess = tf.InteractiveSession()
-        x = tf.placeholder("float", [None, 224, 224, 3])
-        # network = Vgg19(x)
-        network = Vgg19_simple_api(x)
-        y = network.outputs
-        probs = tf.nn.softmax(y, name="prob")
+        
         tl.layers.initialize_global_variables(sess)
         print("Restoring model from npz file")
         tl.files.assign_params(sess, cls.params, network)
@@ -45,7 +44,7 @@ class ImageControl(object):
             b = np.asarray(val[1][1])
             print("  Loading %s: %s, %s" % (val[0], W.shape, b.shape))
             cls.params.extend([W, b])
-
+        # network = Vgg19(x)
 # TODO make it env variables
 ImageControl.pre_load("/notebooks/education/vgg19.npy")
 
