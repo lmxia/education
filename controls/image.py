@@ -23,7 +23,7 @@ class ImageControl(object):
         sess = tf.InteractiveSession()
         tl.layers.initialize_global_variables(sess)
         print("Restoring model from npz file")
-        tl.files.assign_params(sess, cls.params, network)
+        tl.files.assign_params(sess, cls.params, cls.network)
         start_time = time.time()
         prob = sess.run(cls.probs, feed_dict= {cls.x : img1})
         print("End time : %.5ss" % (time.time() - start_time))
