@@ -12,7 +12,8 @@ class ArcControl(object):
 
     hiddenDim = 256
     num_input = 1
-
+    
+    sess = tf.Session()
     x = tf.placeholder(tf.float32, [None, num_input])
     W = tf.Variable(tf.truncated_normal([num_input, hiddenDim], stddev = 0.1))
     b = tf.Variable(tf.constant(0.1, shape = [1,hiddenDim]))
@@ -28,7 +29,7 @@ class ArcControl(object):
 
     optimizer = tf.train.AdamOptimizer(rate)
     init = tf.global_variables_initializer()
-    sess = tf.Session()
+
     sess.run(init)
 
     @classmethod
