@@ -1,7 +1,6 @@
 from rest_framework.views import APIView
 from controls.line import LineControl
 from django.http import QueryDict
-from rest_framework.request import Request
 from utils.response import get_parameter_dic
 
 class ArcView(APIView):
