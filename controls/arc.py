@@ -43,7 +43,7 @@ class ArcControl(object):
             y_list.append(eval(item.get("y")))
         train_X = numpy.array(x_list)[:,np.newaxis]
         train_Y = numpy.array(y_list)[:,np.newaxis]
-        print train_X.shape
+        print(train_X.shape)
         loss = tf.reduce_mean(tf.square(cls.y - train_Y))#最小均方误差
         for time in range(0,10001):
             train.run({x:train_X},cls.sess)
