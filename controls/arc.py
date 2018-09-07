@@ -4,7 +4,7 @@ import logging
 from utils.response import JsonResponse
 from rest_framework import status
 import tensorflow as tf
-import numpy
+import numpy as np
 
 LOG = logging.getLogger(__name__)
 
