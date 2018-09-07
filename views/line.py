@@ -1,6 +1,5 @@
 from rest_framework.views import APIView
 from controls.line import LineControl
-from django.http import QueryDict
 from utils.response import get_parameter_dic
 # def get_parameter_dic(request, *args, **kwargs):
 #     if isinstance(request, Request) == False:

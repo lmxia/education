@@ -2,6 +2,7 @@ from django.utils import six
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.request import Request
+from django.http import QueryDict
 
 def get_parameter_dic(request, *args, **kwargs):
     if isinstance(request, Request) == False:
