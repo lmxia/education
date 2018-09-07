@@ -32,7 +32,7 @@ class ArcControl(object):
 
     @classmethod
     def regression(cls, data):
-        sess.run(init)
+        cls.sess.run(init)
         x_list = []
         y_list = []
         for item in data:
