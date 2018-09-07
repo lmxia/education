@@ -9,14 +9,31 @@ import numpy
 LOG = logging.getLogger(__name__)
 
 class ArcControl(object):
-    learning_rate = 0.01
-    training_epochs = 1000
-    display_step = 50
+
+    hiddenDim = 256
+    num_input = 1
+
+    x = tf.placeholder(tf.float32, [None, num_input])
+    W = tf.Variable(tf.truncated_normal([num_input, hiddenDim], stddev = 0.1))
+    b = tf.Variable(tf.Variable([1,hiddenDim]))
+
+    W2 = tf.Variable(tf.truncated_normal([hiddenDim,1], stddev = 0.1))
+    b2 = tf.Variable(tf.Variable([1]))
+
+    hidden = tf.nn.sigmoid(tf.matmul(x,W) + b)
+    y = tf.matmul(hidden, W2) + b2
+
+    step = tf.Variable(0,trainable=False)
+    rate = tf.train.exponential_decay(0.15, step, 1, 0.9999)
+
+    optimizer = tf.train.AdamOptimizer(rate)
+    init = tf.global_variables_initializer()
+    sess = tf.Session()
+    sess.run(init)
+
     @classmethod
     def regression(cls, data):
-        back = {"w":"0", "b":"0"}
-        
-        rng = numpy.random
+        train = cls.optimizer.minimize(loss,global_step = cls.step)
         x_list = []
         y_list = []
         for item in data:
@@ -24,44 +41,13 @@ class ArcControl(object):
             print(item.get("y"))
             x_list.append(eval(item.get("x")))
             y_list.append(eval(item.get("y")))
-        
-        train_X = numpy.array(x_list)
-        train_Y = numpy.array(y_list)
-        n_samples = train_X.shape[0]
-
-        # tf Graph Input，tf图输入
-        X = tf.placeholder("float")
-        Y = tf.placeholder("float")
-
-        # Set model weights，初始化网络模型的权重
-        W = tf.Variable(rng.randn(), name="weight")
-        b = tf.Variable(rng.randn(), name="bias")
-
-        # Construct a linear model，构造线性模型
-        pred = tf.add(tf.multiply(X, W), b)
-        # Mean squared error，损失函数：均方差
-        cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
-        # Gradient descent， 优化方式：梯度下降
-        optimizer = tf.train.GradientDescentOptimizer(cls.learning_rate).minimize(cost)
-        # Initialize the variables (i.e. assign their default value)，初始化所有图节点参数
-        init = tf.global_variables_initializer()
-        # Start training，开始训练
-        with tf.Session() as sess:
-            sess.run(init)
-            print("initialed...")
-            # Fit all training data
-            for epoch in range(cls.training_epochs):
-                for (x, y) in zip(train_X, train_Y):
-                    sess.run(optimizer, feed_dict={X: x, Y: y})
-
-                #Display logs per epoch step
-                if (epoch+1) % cls.display_step == 0:
-                    c = sess.run(cost, feed_dict={X: train_X, Y:train_Y})
-                    print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c),"W=", sess.run(W), "b=", sess.run(b))
-                        
-            print("Optimization Finished!")
-            training_cost = sess.run(cost, feed_dict={X: train_X, Y: train_Y})
-            print("Training cost=", training_cost, "W=", sess.run(W), "b=", sess.run(b), '\n')
-            back["w"] = sess.run(W)
-            back["b"] = sess.run(b)
-        return JsonResponse(data=back, code=status.HTTP_200_OK, desc='get house success') 
+        train_X = numpy.array(x_list)[:,np.newaxis]
+        train_Y = numpy.array(y_list)[:,np.newaxis]
+        print train_X.shape
+        loss = tf.reduce_mean(tf.square(cls.y - train_Y))#最小均方误差
+        for time in range(0,10001):
+            train.run({x:train_X},cls.sess)
+            if time % 1000 == 0:
+                print('train time:', time, 'loss is ', loss.eval({x:train_X},cls.sess))
+        back = cls.y.eval({x:train_X},cls.sess)[:,0]
+        return JsonResponse(data=back, code=status.HTTP_200_OK, desc='get success') 
