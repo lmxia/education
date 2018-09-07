@@ -15,10 +15,10 @@ class ArcControl(object):
 
     x = tf.placeholder(tf.float32, [None, num_input])
     W = tf.Variable(tf.truncated_normal([num_input, hiddenDim], stddev = 0.1))
-    b = tf.Variable(tf.Variable([1,hiddenDim]))
+    b = tf.Variable(tf.constant(0.1, shape = [1,hiddenDim]))
 
     W2 = tf.Variable(tf.truncated_normal([hiddenDim,1], stddev = 0.1))
-    b2 = tf.Variable(tf.Variable([1]))
+    b2 = tf.Variable(tf.constant(0.1, shape = [1]))
 
     hidden = tf.nn.sigmoid(tf.matmul(x,W) + b)
     y = tf.matmul(hidden, W2) + b2
