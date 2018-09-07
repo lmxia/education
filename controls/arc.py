@@ -40,8 +40,8 @@ class ArcControl(object):
             print(item.get("y"))
             x_list.append(eval(item.get("x")))
             y_list.append(eval(item.get("y")))
-        train_X = numpy.array(x_list)[:,np.newaxis]
-        train_Y = numpy.array(y_list)[:,np.newaxis]
+        train_X = np.array(x_list)[:,np.newaxis]
+        train_Y = np.array(y_list)[:,np.newaxis]
         print(train_X.shape)
         loss = tf.reduce_mean(tf.square(cls.y - train_Y))#最小均方误差
         train = cls.optimizer.minimize(loss,global_step = cls.step)
