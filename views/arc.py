@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from controls.line import LineControl
+from controls.arc import ArcControl
 from utils.response import get_parameter_dic
 
 class ArcView(APIView):
