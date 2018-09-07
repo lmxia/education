@@ -18,6 +18,6 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^line/',include('linear_regression.urls')),
+    url(r'^regress/',include('regression.urls')),
     url(r'^image/', include('image_process.urls')),
 ]
