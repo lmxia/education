@@ -33,7 +33,6 @@ class ArcControl(object):
 
     @classmethod
     def regression(cls, data):
-        train = cls.optimizer.minimize(loss,global_step = cls.step)
         x_list = []
         y_list = []
         for item in data:
@@ -45,6 +44,7 @@ class ArcControl(object):
         train_Y = numpy.array(y_list)[:,np.newaxis]
         print(train_X.shape)
         loss = tf.reduce_mean(tf.square(cls.y - train_Y))#最小均方误差
+        train = cls.optimizer.minimize(loss,global_step = cls.step)
         for time in range(0,10001):
             train.run({x:train_X},cls.sess)
             if time % 1000 == 0:
