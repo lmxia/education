@@ -29,10 +29,9 @@ class ArcControl(object):
 
     optimizer = tf.train.AdamOptimizer(rate)
     init = tf.global_variables_initializer()
-
+    sess.run(init)
     @classmethod
     def regression(cls, data):
-        cls.sess.run(init)
         x_list = []
         y_list = []
         for item in data:
