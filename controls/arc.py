@@ -30,9 +30,9 @@ class ArcControl(object):
     rate = tf.train.exponential_decay(0.15, step, 1, 0.9999)
 
     optimizer = tf.train.AdamOptimizer(rate)
+    loss = tf.reduce_mean(tf.square(y - Y))#最小均方误差
     train = optimizer.minimize(loss,global_step = step)
     init = tf.global_variables_initializer()
-    loss = tf.reduce_mean(tf.square(y - Y))#最小均方误差
     sess.run(init)
     @classmethod
     def regression(cls, data):
