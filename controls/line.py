@@ -49,11 +49,11 @@ class LineControl(object):
         # Fit all training data
         for epoch in range(cls.training_epochs):
             # for (x, y) in zip(train_X, train_Y):
-            cls.sess.run(cls.optimizer, feed_dict={cls.X: train_X[:,numpy.newaxis], cls.Y: train_Y[:,numpynewaxis]})
+            cls.sess.run(cls.optimizer, feed_dict={cls.X: train_X[:,numpy.newaxis], cls.Y: train_Y[:,numpy.newaxis]})
 
             # Display logs per epoch step
             if (epoch+1) % cls.display_step == 0:
-                c = cls.sess.run(cls.cost, feed_dict={cls.X: train_X[:,numpynewaxis], cls.Y:train_X[:,numpynewaxis]})
+                c = cls.sess.run(cls.cost, feed_dict={cls.X: train_X[:,numpy.newaxis], cls.Y:train_X[:,numpy.newaxis]})
                 print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c),"W=", cls.sess.run(cls.W)[0][0], "b=", cls.sess.run(cls.b)[0])
                     
         print("Optimization Finished!")
