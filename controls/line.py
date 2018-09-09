@@ -12,7 +12,6 @@ class LineControl(object):
     learning_rate = 0.02
     training_epochs = 500
     display_step = 50
-    back = {"w":"0", "b":"0"}
     rng = numpy.random
     x_list = []
     y_list = []
@@ -38,6 +37,7 @@ class LineControl(object):
     print("initialed...")
     @classmethod
     def regression(cls, data):
+        back = {"w":"0", "b":"0"}
         for item in data:
             cls.x_list.append(eval(item.get("x")))
             cls.y_list.append(eval(item.get("y")))
