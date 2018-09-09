@@ -26,9 +26,10 @@ class LineControl(object):
 
     # Construct a linear model，构造线性模型
     pred = tf.add(tf.multiply(X, W), b)
-    n_samples = 10
+    # n_samples = 10
     # Mean squared error，损失函数：均方差
-    cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
+    # cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
+    cost = tf.reduce_mean(tf.square(pred - Y))
     # Gradient descent， 优化方式：梯度下降
     optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
     # Initialize the variables (i.e. assign their default value)，初始化所有图节点参数
@@ -44,7 +45,7 @@ class LineControl(object):
         
         train_X = numpy.array(cls.x_list)
         train_Y = numpy.array(cls.y_list)
-        cls.n_samples = train_X.shape[0]
+        # cls.n_samples = train_X.shape[0]
 
         # Fit all training data
         for epoch in range(cls.training_epochs):
