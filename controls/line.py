@@ -10,7 +10,7 @@ LOG = logging.getLogger(__name__)
 
 class LineControl(object):
     learning_rate = 0.02
-    training_epochs = 1000
+    training_epochs = 800
     display_step = 50
     rng = numpy.random
     x_list = []
@@ -51,10 +51,10 @@ class LineControl(object):
             for (x, y) in zip(train_X, train_Y):
                 cls.sess.run(cls.optimizer, feed_dict={cls.X: x, cls.Y: y})
 
-            #Display logs per epoch step
-            # if (epoch+1) % cls.display_step == 0:
-            #     c = cls.sess.run(cls.cost, feed_dict={cls.X: train_X, cls.Y:train_Y})
-            #     print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c),"W=", cls.sess.run(cls.W), "b=", sess.run(b))
+            Display logs per epoch step
+            if (epoch+1) % cls.display_step == 0:
+                c = cls.sess.run(cls.cost, feed_dict={cls.X: train_X, cls.Y:train_Y})
+                print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c),"W=", cls.sess.run(cls.W), "b=", sess.run(b))
                     
         print("Optimization Finished!")
         training_cost = cls.sess.run(cls.cost, feed_dict={cls.X: train_X, cls.Y: train_Y})
