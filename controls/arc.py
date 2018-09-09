@@ -51,5 +51,5 @@ class ArcControl(object):
             cls.train.run({cls.X:train_X, cls.Y:train_Y},cls.sess)
             if time % 1000 == 0:
                 print('train time:', time, 'loss is ', cls.loss.eval({cls.X:train_X, cls.Y:train_Y},cls.sess))
-        back = cls.y.eval({cls.X:train_X, cls.Y:train_Y},cls.sess)[:,0]
+        back = zip(xTrain[:,0],cls.y.eval({cls.X:train_X, cls.Y:train_Y},cls.sess)[:,0])
         return JsonResponse(data=back, code=status.HTTP_200_OK, desc='get success') 
