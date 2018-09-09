@@ -26,7 +26,7 @@ class LineControl(object):
     b = tf.Variable(tf.zeros([1]))
 
     # Construct a linear model，构造线性模型
-    pred = tf.matmul(X, W) + biases
+    pred = tf.matmul(X, W) + b
     # n_samples = 10
     # Mean squared error，损失函数：均方差
     cost = tf.reduce_mean(tf.square(pred - Y))
