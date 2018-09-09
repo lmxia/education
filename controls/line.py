@@ -39,6 +39,8 @@ class LineControl(object):
     @classmethod
     def regression(cls, data):
         back = {"w":"0", "b":"0"}
+        del cls.x_list[:]
+        del cls.y_list[:]
         for item in data:
             cls.x_list.append(eval(item.get("x")))
             cls.y_list.append(eval(item.get("y")))
