@@ -54,7 +54,7 @@ class LineControl(object):
             # Display logs per epoch step
             if (epoch+1) % cls.display_step == 0:
                 c = cls.sess.run(cls.cost, feed_dict={cls.X: train_X, cls.Y:train_Y})
-                print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c),"W=", cls.sess.run(cls.W), "b=", cls.sess.run(b))
+                print("Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(c),"W=", cls.sess.run(cls.W), "b=", cls.sess.run(cls.b))
                     
         print("Optimization Finished!")
         training_cost = cls.sess.run(cls.cost, feed_dict={cls.X: train_X, cls.Y: train_Y})
