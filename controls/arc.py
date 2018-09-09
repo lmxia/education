@@ -39,15 +39,13 @@ class ArcControl(object):
         x_list = []
         y_list = []
         for item in data:
-            print(item.get("x"))
-            print(item.get("y"))
             x_list.append(eval(item.get("x")))
             y_list.append(eval(item.get("y")))
         train_X = np.array(x_list)[:,np.newaxis]
         train_Y = np.array(y_list)[:,np.newaxis]
         print(train_X.shape)
 
-        for time in range(0,5001):
+        for time in range(0,2500):
             cls.train.run({cls.X:train_X, cls.Y:train_Y},cls.sess)
             if time % 1000 == 0:
                 print('train time:', time, 'loss is ', cls.loss.eval({cls.X:train_X, cls.Y:train_Y},cls.sess))
