@@ -47,7 +47,7 @@ class ArcControl(object):
         train_Y = np.array(y_list)[:,np.newaxis]
         print(train_X.shape)
 
-        for time in range(0,10001):
+        for time in range(0,5001):
             cls.train.run({cls.X:train_X, cls.Y:train_Y},cls.sess)
             if time % 1000 == 0:
                 print('train time:', time, 'loss is ', cls.loss.eval({cls.X:train_X, cls.Y:train_Y},cls.sess))
