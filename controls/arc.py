@@ -52,4 +52,8 @@ class ArcControl(object):
             if time % 1000 == 0:
                 print('train time:', time, 'loss is ', cls.loss.eval({cls.X:train_X, cls.Y:train_Y},cls.sess))
         back = zip(train_X[:,0],cls.y.eval({cls.X:train_X, cls.Y:train_Y},cls.sess)[:,0])
-        return JsonResponse(data=back, code=status.HTTP_200_OK, desc='get success') 
+        response = []
+        for i in back:
+            response.append({"x":i[0],"y":i[1]})
+
+        return JsonResponse(data=response, code=status.HTTP_200_OK, desc='get success') 
