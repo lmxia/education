@@ -16,7 +16,7 @@ class LineControl(object):
     rng = numpy.random
     x_list = []
     y_list = []
-    tf.Session()
+    sess = tf.Session()
     # tf Graph Input，tf图输入
     X = tf.placeholder("float")
     Y = tf.placeholder("float")
