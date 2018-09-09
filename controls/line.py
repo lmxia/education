@@ -31,7 +31,7 @@ class LineControl(object):
     # Mean squared error，损失函数：均方差
     cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
     # Gradient descent， 优化方式：梯度下降
-    optimizer = tf.train.GradientDescentOptimizer(cls.learning_rate).minimize(cost)
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
     # Initialize the variables (i.e. assign their default value)，初始化所有图节点参数
     init = tf.global_variables_initializer()
     sess.run(init)
