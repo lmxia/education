@@ -10,7 +10,7 @@ LOG = logging.getLogger(__name__)
 
 class LineControl(object):
     learning_rate = 0.02
-    training_epochs = 500
+    training_epochs = 1000
     display_step = 50
     rng = numpy.random
     x_list = []
