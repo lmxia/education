@@ -83,8 +83,8 @@ class StyleTransferService(object):
         elapsed_time = datetime.now() - start_time
         return result
 
-ENCODER_PATH = '../pretrained_vgg19_encoder_model.npz'
-DECODER_PATH = '../pretrained_vgg19_decoder_model.npz'
+ENCODER_PATH = '/notebooks/education/pretrained_vgg19_encoder_model.npz'
+DECODER_PATH = '/notebooks/education/pretrained_vgg19_decoder_model.npz'
 
 transfer_service = StyleTransferService(ENCODER_PATH, DECODER_PATH)
 
