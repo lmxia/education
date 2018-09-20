@@ -18,6 +18,8 @@ class StyleTransferService(object):
         self.content_input = None
         self.style_input = None
         self.generated_img = None
+        self.encode_path = encode_path
+        self.decode_path = decode_path
         self.gragh = tf.Graph()
         self.init_session_handler()
 
@@ -62,9 +64,9 @@ class StyleTransferService(object):
 
         # sess.run(tf.global_variables_initializer())
 
-        encoder.restore_model(self.sess, ENCODER_PATH, enc_c_net)
-        encoder.restore_model(self.sess, ENCODER_PATH, enc_s_net)
-        decoder.restore_model(self.sess, DECODER_PATH, dec_net)
+        encoder.restore_model(self.sess, self.encode_path, enc_c_net)
+        encoder.restore_model(self.sess, self.encode_path, enc_s_net)
+        decoder.restore_model(self.sess, self.decode_path, dec_net)
 
 
 
