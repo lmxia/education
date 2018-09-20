@@ -9,6 +9,8 @@ from scipy.misc import imread, imsave
 from models import Decoder, Encoder
 from utils import transfer_util
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.request import Request
+from rest_framework.parsers import FileUploadParser
 alpha = 1
 output_path = '../output/'
 
