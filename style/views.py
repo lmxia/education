@@ -75,6 +75,7 @@ class StyleTransferService(object):
 
     def transfer(self, content_file, style_file):
         start_time = datetime.now()
+        print("content_file {} style_file{}".format(content_file,style_file))
         content_image = imread(content_file, mode='RGB')
         style_image = imread(style_file, mode='RGB')
         content_tensor = np.expand_dims(content_image, axis=0)
