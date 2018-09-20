@@ -62,6 +62,7 @@ class StyleTransferService(object):
 
         # clip to 0..255
         generated_img = tf.clip_by_value(generated_img, 0.0, 255.0)
+        self.sess.run(tf.global_variables_initializer())
 
         # sess.run(tf.global_variables_initializer())
 
