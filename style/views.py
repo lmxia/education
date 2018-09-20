@@ -32,7 +32,7 @@ class StyleTransferService(object):
         self.style_input = tf.placeholder(tf.float32, shape=(1, None, None, 3), name='style_input')
 
         # switch RGB to BGR
-        content = tf.reverse(content_input, axis=[-1])
+        content = tf.reverse(self.content_input, axis=[-1])
         style = tf.reverse(style_input, axis=[-1])
         # preprocess image
         content = encoder.preprocess(content)
