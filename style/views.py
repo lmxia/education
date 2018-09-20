@@ -23,11 +23,9 @@ class StyleTransferService(object):
         self.generated_img = None
         self.encode_path = encode_path
         self.decode_path = decode_path
-        self.gragh = tf.Graph()
         self.init_session_handler()
 
     def init_session_handler(self):
-        self.gragh.as_default()
         self.sess = tf.Session()
 
         encoder = Encoder()
