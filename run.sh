@@ -1,4 +1,5 @@
 curl -F 'file=@./tiger.jpeg' localhost:8000/image/process
+curl -F 'content_file=@./content_2.png' -F 'style_file=@./style_2.png' 18.191.56.202:8000/style/transfer
 curl -X POST -H 'content-type:application/json' -d '{"points":[{"x":"1","y":"0.9"},{"x":"2.1","y":"1.9"},{"x":"2.9","y":"2.87"}]}' 18.216.109.187:8000/line/process
 git clone https://github.com/lmxia/education.git
 git clone https://github.com/tensorlayer/tensorlayer.git
