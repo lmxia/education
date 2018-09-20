@@ -8,7 +8,7 @@ import tensorflow as tf
 from scipy.misc import imread, imsave
 from models import Decoder, Encoder
 from utils import transfer_util
-
+from django.views.decorators.csrf import csrf_exempt
 alpha = 1
 output_path = '../output/'
 
