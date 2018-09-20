@@ -18,8 +18,8 @@ class StyleTransferService(object):
         self.content_input = None
         self.style_input = None
         self.generated_img = None
-        self.init_session_handler()
         self.gragh = tf.Graph()
+        self.init_session_handler()
 
     def init_session_handler(self):
         self.gragh.as_default()
