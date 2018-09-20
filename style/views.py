@@ -14,8 +14,6 @@ output_path = '../output/'
 
 class StyleTransferService(object):
     def __init__(self, encode_path, decode_path):
-        self.checkpoint_path = encode_path
-        self.checkpoint_file = checkpoint_file
         self.sess = None
         self.content_input = None
         self.style_input = None
