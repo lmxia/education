@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^regress/',include('regression.urls')),
     url(r'^image/', include('image_process.urls')),
+    url(r'^style/',include('style.urls')),
 ]
