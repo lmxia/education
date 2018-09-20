@@ -13,7 +13,7 @@ from rest_framework.request import Request
 from rest_framework.parsers import FileUploadParser
 from rest_framework.views import APIView
 alpha = 1
-output_path = '/notebooks/education/output/'
+output_path = '/notebooks/education/'
 
 class StyleTransferService(object):
     def __init__(self, encode_path, decode_path):
