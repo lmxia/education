@@ -6,7 +6,7 @@ from os import listdir, remove
 from os.path import join
 from scipy.misc import imread, imresize
 
-PATH = '/root/even/dataset/wiki_all_images'
+# PATH = '/root/even/dataset/wiki_all_images'
 
 
 def list_images(directory):

@@ -7,7 +7,7 @@ import numpy as np
 import tensorflow as tf
 from scipy.misc import imread, imsave
 from models import Decoder, Encoder
-import utils
+from utils import transfer_util
 
 alpha = 1
 output_path = '../output/'
@@ -44,7 +44,7 @@ class StyleTransferService(object):
         enc_s_net = encoder.encode(style, 'style/')
 
         # pass the encoded images to AdaIN
-        target_features = utils.AdaIN(enc_c_net.outputs, enc_s_net.outputs, alpha=alpha)
+        target_features = transfer_util.AdaIN(enc_c_net.outputs, enc_s_net.outputs, alpha=alpha)
 
         # decode target features back to image
         dec_net = decoder.decode(target_features, prefix="decoder/")
