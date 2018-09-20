@@ -52,16 +52,16 @@ class StyleTransferService(object):
         # decode target features back to image
         dec_net = decoder.decode(target_features, prefix="decoder/")
 
-        generated_img = dec_net.outputs
+        self.generated_img = dec_net.outputs
 
         # deprocess image
-        generated_img = encoder.deprocess(generated_img)
+        self.generated_img = encoder.deprocess(self.generated_img)
 
         # switch BGR back to RGB
-        generated_img = tf.reverse(generated_img, axis=[-1])
+        self.generated_img = tf.reverse(self.generated_img, axis=[-1])
 
         # clip to 0..255
-        generated_img = tf.clip_by_value(generated_img, 0.0, 255.0)
+        self.generated_img = tf.clip_by_value(self.generated_img, 0.0, 255.0)
         self.sess.run(tf.global_variables_initializer())
 
         # sess.run(tf.global_variables_initializer())
