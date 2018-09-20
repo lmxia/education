@@ -4,5 +4,5 @@ from . import views
 __author__ = 'xialingming'
 
 urlpatterns = [
-    url(r'^transfer/?$', views.transfer, name='transfer/'), 
+    url(r'^transfer/?$', TransferView.as_view(), name='transfer/'), 
 ]

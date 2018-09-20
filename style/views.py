@@ -11,6 +11,7 @@ from utils import transfer_util
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.request import Request
 from rest_framework.parsers import FileUploadParser
+from rest_framework.views import APIView
 alpha = 1
 output_path = '../output/'
 
@@ -110,3 +111,13 @@ def transfer(request):
             result))
     else:
         return HttpResponse("Please use POST to request with data")
+
+class TransferView(APIView):
+    def post(self, request, *args, **kwargs):
+        parser_classes = (FileUploadParser,)
+        content_file = request.data['content_file']
+        style_file = request.data['style_file']
+        result = transfer_service.transfer(content_file, style_file)
+        return HttpResponse("Success to predict cancer, result: {}".format(
+            result))
+
