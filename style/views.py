@@ -90,7 +90,7 @@ class StyleTransferService(object):
         style_tensor = np.expand_dims(style_image, axis=0)
         print(content_tensor.shape,style_tensor.shape)
         result = self.sess.run(self.generated_img, feed_dict={self.content_input: content_tensor, self.style_input: style_tensor})
-        result_name = os.path.join(output_path, gen_rand(),'output.jpg')
+        result_name = os.path.join(output_path, gen_rand()+'output.jpg')
         print(result_name, ' is generated')
         imsave(result_name, result[0])
         image_data = open(result_name,"rb").read()
