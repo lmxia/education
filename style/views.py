@@ -108,10 +108,7 @@ def transfer(request):
         # The post body should be json, such as {"key": [1.0, 2.0], "features": [[10,10,10,8,6,1,8,9,1], [6,2,1,1,1,1,7,1,1]]}
 
         result = transfer_service.transfer(content_file, style_file)
-        return HttpResponse("Success to predict cancer, result: {}".format(
-            result))
-    else:
-        return HttpResponse("Please use POST to request with data")
+        return JsonResponse(data=result, code=status.HTTP_200_OK, desc='get transfer success')
 
 class TransferView(APIView):
     def post(self, request, *args, **kwargs):
