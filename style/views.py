@@ -122,7 +122,7 @@ def index(request):
 
 class TransferView(APIView):
     def post(self, request, *args, **kwargs):
-        parser_classes = (FileUploadParser,)
+        print(args)
         content_file = request.data['content_file']
         style_file = request.data['style_file']
         print(content_file,content_file)
