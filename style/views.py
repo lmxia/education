@@ -125,6 +125,7 @@ class TransferView(APIView):
         parser_classes = (FileUploadParser,)
         content_file = request.data['content_file']
         style_file = request.data['style_file']
+        print(content_file,content_file)
         result = transfer_service.transfer(content_file, style_file)
         # image_data = open(imagepath,"rb").read()
         return HttpResponse(result,content_type="image/jpg")
