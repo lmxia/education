@@ -88,7 +88,7 @@ class StyleTransferService(object):
         print(result_name, ' is generated')
         imsave(result_name, result[0])
         image_data = open(result_name,"rb").read()
-        print（image_data）
+        print(image_data）
         elapsed_time = datetime.now() - start_time
         return result[0]
 
