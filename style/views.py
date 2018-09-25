@@ -15,8 +15,15 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from utils.response import JsonResponse
 from rest_framework import status
+import binascii
 alpha = 0.9
 output_path = '/notebooks/education/'
+
+
+def gen_rand(i=10):
+    """Generate random strings for passwords."""
+    return binascii.hexlify(os.urandom(i)).decode()
+
 
 class StyleTransferService(object):
     def __init__(self, encode_path, decode_path):
@@ -76,7 +83,6 @@ class StyleTransferService(object):
 
 
     def transfer(self, content_file, style_file):
-        start_time = datetime.now()
         print("content_file {} style_file{}".format(content_file,style_file))
         content_image = imread(content_file, mode='RGB')
         style_image = imread(style_file, mode='RGB')
@@ -84,13 +90,12 @@ class StyleTransferService(object):
         style_tensor = np.expand_dims(style_image, axis=0)
         print(content_tensor.shape,style_tensor.shape)
         result = self.sess.run(self.generated_img, feed_dict={self.content_input: content_tensor, self.style_input: style_tensor})
-        result_name = os.path.join(output_path, 'output.jpg')
+        result_name = os.path.join(output_path, gen_rand(),'output.jpg')
         print(result_name, ' is generated')
         imsave(result_name, result[0])
         image_data = open(result_name,"rb").read()
-        print(image_data)
-        elapsed_time = datetime.now() - start_time
-        return result[0]
+        os.remove(result_name)
+        return image_data
 
 ENCODER_PATH = '/notebooks/education/pretrained_vgg19_encoder_model.npz'
 DECODER_PATH = '/notebooks/education/pretrained_vgg19_decoder_model.npz'
