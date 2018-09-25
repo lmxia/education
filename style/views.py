@@ -117,6 +117,5 @@ class TransferView(APIView):
         content_file = request.data['content_file']
         style_file = request.data['style_file']
         result = transfer_service.transfer(content_file, style_file)
-        return HttpResponse("Success to predict cancer, result: {}".format(
-            result))
+        return JsonResponse(data=result, code=status.HTTP_200_OK, desc='get transfer success')
 
