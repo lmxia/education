@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.request import Request
 from rest_framework.parsers import FileUploadParser
 from rest_framework.views import APIView
+from utils.response import JsonResponse
 alpha = 0.9
 output_path = '/notebooks/education/'
 
