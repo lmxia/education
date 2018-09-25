@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.request import Request
 from rest_framework.parsers import FileUploadParser
 from rest_framework.views import APIView
-alpha = 1
+alpha = 0.1
 output_path = '/notebooks/education/'
 
 class StyleTransferService(object):

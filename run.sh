@@ -5,10 +5,9 @@ git clone https://github.com/lmxia/education.git
 git clone https://github.com/tensorlayer/tensorlayer.git
 cd education && wget https://github.com/tensorlayer/pretrained-models/raw/master/models/vgg19.npy && wget https://github.com/tensorlayer/pretrained-models/raw/master/models/style_transfer_models_and_examples/pretrained_vgg19_encoder_model.npz \
 wget https://github.com/tensorlayer/pretrained-models/raw/master/models/style_transfer_models_and_examples/pretrained_vgg19_decoder_model.npz
-
+docker run -it -d --rm -p 8888:8888 -p 6006:6006 -p 8000:8000 -v $(pwd):/notebooks -e PASSWORD=12345 tensorlayer/tensorlayer:latest-gpu
 
 pip install django djangorestframework
 apt update && apt install python-tk
 
 python manage.py runserver 0.0.0.0:8000
-docker run -it -d --rm -p 8888:8888 -p 6006:6006 -p 8000:8000 -v $(pwd):/notebooks -e PASSWORD=12345 tensorlayer/tensorlayer:latest-gpu
