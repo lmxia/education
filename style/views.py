@@ -11,6 +11,7 @@ from utils import transfer_util
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.request import Request
 from rest_framework.parsers import FileUploadParser
+from django.http import HttpResponse
 from rest_framework.views import APIView
 from utils.response import JsonResponse
 from rest_framework import status
@@ -86,8 +87,10 @@ class StyleTransferService(object):
         result_name = os.path.join(output_path, 'output.jpg')
         print(result_name, ' is generated')
         imsave(result_name, result[0])
+        image_data = open(result_name,"rb").read()
+        print（image_data）
         elapsed_time = datetime.now() - start_time
-        return result
+        return result[0]
 
 ENCODER_PATH = '/notebooks/education/pretrained_vgg19_encoder_model.npz'
 DECODER_PATH = '/notebooks/education/pretrained_vgg19_decoder_model.npz'
@@ -101,16 +104,16 @@ def index(request):
 
 
 # Disable CSRF, refer to https://docs.djangoproject.com/en/dev/ref/csrf/#edge-cases
-@csrf_exempt
-def transfer(request):
-    if request.method == 'POST':
-        parser_classes = (FileUploadParser,)
-        content_file = request.data['content_file']
-        style_file = request.data['style_file']
-        # The post body should be json, such as {"key": [1.0, 2.0], "features": [[10,10,10,8,6,1,8,9,1], [6,2,1,1,1,1,7,1,1]]}
+# @csrf_exempt
+# def transfer(request):
+#     if request.method == 'POST':
+#         parser_classes = (FileUploadParser,)
+#         content_file = request.data['content_file']
+#         style_file = request.data['style_file']
+#         # The post body should be json, such as {"key": [1.0, 2.0], "features": [[10,10,10,8,6,1,8,9,1], [6,2,1,1,1,1,7,1,1]]}
 
-        result = transfer_service.transfer(content_file, style_file)
-        return JsonResponse(data=result, code=status.HTTP_200_OK, desc='get transfer success')
+#         result = transfer_service.transfer(content_file, style_file)
+#         return JsonResponse(data=result, code=status.HTTP_200_OK, desc='get transfer success')
 
 class TransferView(APIView):
     def post(self, request, *args, **kwargs):
@@ -118,5 +121,7 @@ class TransferView(APIView):
         content_file = request.data['content_file']
         style_file = request.data['style_file']
         result = transfer_service.transfer(content_file, style_file)
-        return JsonResponse(data=result, code=status.HTTP_200_OK, desc='get transfer success')
+        # image_data = open(imagepath,"rb").read()
+        return HttpResponse(result,content_type="image/jpg")
+    # return JsonResponse(data=result, code=status.HTTP_200_OK, desc='get transfer success')
 
